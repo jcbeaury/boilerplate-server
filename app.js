@@ -11,6 +11,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+/* cors TODO: configure for production */
+var cors = require('cors')
+app.use(cors())
+
 /* auth */
 var jwt = require('express-jwt');
 var jwks = require('jwks-rsa');
