@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+/* GET all groups */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send({groups: [{name: 'Group 1'}, {name: 'Group 2'}, {name: 'Group 3'}]});
 });
 
 module.exports = router;

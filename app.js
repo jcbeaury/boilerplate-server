@@ -1,4 +1,4 @@
-// init
+/* init */
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -10,9 +10,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-// auth
+/* auth */
 var jwt = require('express-jwt');
 var jwks = require('jwks-rsa');
 var jwtCheck = jwt({
@@ -28,10 +27,10 @@ var jwtCheck = jwt({
 });
 app.use(jwtCheck);
 
-// routes
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+/* routes */
+var groupsRouter = require('./routes/groups');
+app.use('/groups', groupsRouter);
+var employeesRouter = require('./routes/employees');
+app.use('/employees', employeesRouter);
 
 module.exports = app;
