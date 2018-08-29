@@ -1,3 +1,6 @@
+/* environment variables */
+require('dotenv').config()
+
 /* init */
 var express = require('express');
 var path = require('path');
@@ -23,10 +26,10 @@ var jwtCheck = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: "https://hello-jcb.auth0.com/.well-known/jwks.json"
+    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
   }),
-  audience: 'boilerplate-server',
-  issuer: "https://hello-jcb.auth0.com/",
+  audience: process.env.AUTH0_SERVER,
+  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
   algorithms: ['RS256']
 });
 app.use(jwtCheck);
